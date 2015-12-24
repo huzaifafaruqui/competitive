@@ -6,6 +6,7 @@ int main()
 {  
 	ios_base::sync_with_stdio(false);
   int i,t,n,A[60],prod,sum,ans;
+  
   cin>>t;
   do{ ans=sum=0;
      prod=1;
