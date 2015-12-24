@@ -1,0 +1,33 @@
+/*Program Developed By oculto*/
+#include<iostream>
+using namespace std;
+
+int main()
+{  
+	ios_base::sync_with_stdio(false);
+  int i,t,n,A[60],prod,sum,ans;
+  cin>>t;
+  do{ ans=sum=0;
+     prod=1;
+     
+  		cin>>n;
+  		for(i=0;i<n;i++)
+  		cin>>A[i];
+  		for(i=0;i<n;i++)
+  		{
+               prod=1;
+			   sum=0;
+			   		  
+  		 for(int j=i;j<n;j++)
+  		 {
+  		 	prod*=A[j];
+  		 	sum+=A[j];
+  		 	if(sum==prod)
+  		 	ans++;
+		   }
+	}
+		 cout<<ans<<"\n";
+		   
+  }while(--t);	
+return 0;
+}
