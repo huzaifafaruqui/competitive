@@ -1,0 +1,62 @@
+/*Program Developed By oculto*/
+#include<iostream>
+using namespace std;
+
+int Arr[21][22];
+bool dp[21][202]={0};
+
+int fill_dp(int n,int total)
+{   int s,i,j,k;
+
+  for(i=0;i<n;i++)
+  for(j=0;j<=total;j++)
+  dp[i][j]=false;
+  
+	for(i=1;i<=Arr[0][0];i++)
+	dp[0][Arr[0][i]]=true;	
+	
+	for(i=1;i<n;i++)
+	{
+		s=Arr[i][0];
+		for(j=1;j<=s;j++)
+		{
+			for(k=0;k<=total;k++)
+			{   
+			    
+			    if(dp[i-1][k]==true&&k+Arr[i][j]<=total)
+			      dp[i][k+Arr[i][j]]=true;
+			      
+			   	
+			}
+		}
+		
+	}
+	
+	for(i=total;i>=0;i--)
+	if(dp[n-1][i])
+	return i;
+	return -1;
+	
+}
+
+
+int main()
+{  int t,c,total,ans;
+	ios_base::sync_with_stdio(false);
+	cin>>t;
+	do{
+		cin>>total>>c;
+		for(int i=0;i<c;i++)
+		{cin>>Arr[i][0];
+		for(int j=1;j<=Arr[i][0];j++)
+		 cin>>Arr[i][j];
+		}
+		ans=fill_dp(c,total);
+		if(ans==-1)                                               
+		cout<<"no solution\n";
+		else
+		cout<<ans<<"\n";
+		
+	}while(--t);
+return 0;
+}
