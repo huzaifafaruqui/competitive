@@ -1,0 +1,108 @@
+/*Program Developed By oculto*/
+#include<iostream>
+#include<algorithm>
+#include<math.h>
+#include<vector>
+#include<utility>
+#include<string.h>
+#include<cstdio>
+
+#define MOD 1000000007
+#define FOR(i,a,n) for(i=a;i<n;i++)
+#define nl  cout<<'\n'
+#define MAX_INT 2147483647
+#define error 1e-3
+using namespace std;
+
+struct poly{
+	
+	int coeff;
+	int power;
+	
+};
+vector<poly> equation;
+
+double pvalue(double r,int d)
+{
+	
+double rvalue=0;
+int i;
+FOR(i,0,d+1)
+{
+	rvalue+=pow(r,(double)equation[i].power)*equation[i].coeff;
+	//cout<<"for i="<<i<<" value is"<<pow(r,(double)equation[i].power)*equation[i].coeff;
+	//nl;
+}
+return rvalue;
+	
+}
+
+double absd(double x)
+{
+	
+	if (x<0)
+	return (double)-1*x;
+	return x;
+ } 
+
+int main()
+{
+	ios_base::sync_with_stdio(false);
+	//cin.tie(NULL);
+	cout<<fixed;
+	//cout<<(double)(5+6;
+	int deg,i,k;
+	double ans,root,a1,a2,a3,a,b;
+	//cout<<error;
+	
+	cout<<"Enter the degree";
+	nl;
+	cin>>deg;
+	equation.resize(deg+1);
+	for(i=deg;i>=0;i--)
+	{
+		cout<<"Enter coefficient of power ="<<i<<" ";
+		cin>>equation[i].coeff;
+		equation[i].power=i;
+	}
+	cout<<"enter interval:";
+	cin>>a>>b;
+	a1=pvalue(a,deg);
+	a2=pvalue(b,deg);
+	root=((double) a+b)/2;
+	//cout<<pvalue(root,deg);
+	a3=pvalue(root,deg);
+	k=20;
+	//cout<<"for root :"<<root<<" "<<a3;
+	//nl;
+	
+	while(absd(a3)>error&&k--)
+	{
+		
+		if(a3*a1<0)
+		{ //cout<<a3-a1<<"is greater than "<<a3-a2;
+		  //nl;
+		  b=root;
+		  a2=pvalue(b,deg);  
+	   }
+		else
+		{
+			//cout<<a3-a2<<"is greater than "<<a3-a1;
+		   //nl;
+		   a=root;
+		   a1=pvalue(a,deg);
+		
+		}
+		root=(a+b)/2;
+		a3=pvalue(root,deg);
+		
+		//cout<<"root="<<root;
+		//nl;
+		//cout<<"value at root"<<a3;
+		//nl;
+	}
+	
+	cout<<"Approximate root= "<<root;
+	
+return 0;
+}
