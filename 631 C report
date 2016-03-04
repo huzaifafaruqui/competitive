@@ -1,0 +1,85 @@
+/*Program Developed By oculto*/
+#include<iostream>
+#include<algorithm>
+#include<math.h>
+#include<vector>
+#include<utility>
+#include<string.h>
+#include<cstdio>
+
+#define MOD 1000000007
+#define FOR(i,a,n) for(i=a;i<n;i++)
+#define nl  cout<<'\n'
+#define MAX_INT 2147483647
+using namespace std;
+
+int main()
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	vector<int> I,F;
+	vector< pair<int,int> > O;
+	int n,m,i,t,r,last,j,k,mr,a,lasti;
+	cin>>n>>m;
+	
+	I.resize(n);
+	//B.resize(n);
+	O.resize(n);
+	F.resize(n);
+	
+	mr=0;
+	FOR(i,0,n)
+	{
+		cin>>a;
+		I[i]=a;
+		
+	}
+	FOR(i,0,m)
+	{
+		cin>>t>>r;
+		O[r-1].first=t;
+		O[r-1].second=i;
+		mr=max(mr,r);
+		
+	}
+	
+	
+	sort(I.begin(),I.begin()+mr);
+ /*  FOR(i,0,n)
+   cout<<I[i]<<" ";
+   nl;*/
+	
+	for(i=mr;i<n;i++)
+	F[i]=I[i];
+	lasti=last=0;
+	j=0;
+	k=n-mr;
+	for(i=mr-1;i>=0;i--)
+	{  
+	   if(O[i].first!=0&&O[i].second>=lasti)
+	    {
+	   	last=O[i].first;
+		lasti=O[i].second;
+		}
+		if(last==1)
+		{
+				F[i]=I[i+j];
+				k++;
+		}
+		else if(last==2)
+		{
+				F[i]=I[n-1-i-k];
+				//cout<<"for i="<<i<<" k="<<k;
+				j++;		
+		}
+		//j++;
+		
+		
+	}
+	
+FOR(i,0,n)
+cout<<F[i]<<" ";	
+	
+	
+return 0;
+}
