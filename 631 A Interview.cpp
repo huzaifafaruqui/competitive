@@ -1,4 +1,4 @@
-/*Program Developed By oculto*/d
+/*Program Developed By oculto*/
 #include<iostream>
 #include<algorithm>
 #include<math.h>
