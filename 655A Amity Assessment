@@ -1,0 +1,64 @@
+/*Program Developed By oculto*/
+#include<iostream>
+#include<algorithm>
+#include<math.h>
+#include<vector>
+#include<utility>
+#include<string.h>
+#include<cstdio>
+
+#define MOD 1000000007
+#define FOR(i,a,n) for(i=a;i<n;i++)
+#define nl  cout<<'\n'
+#define MAX_INT 2147483647
+using namespace std;
+
+int main()
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	int i,j,flag=1;
+	char A1[3],A2[3],B1[3],B2[3];
+	string a,b;
+cin>>A1;
+cin>>A2;
+cin>>B1;
+cin>>B2;
+a="";
+b="";
+for(i=0;i<2;i++)
+if(A1[i]!='X')
+a+=A1[i];
+for(i=1;i>=0;i--)
+if(A2[i]!='X')
+a+=A2[i];
+for(i=0;i<2;i++)
+if(B1[i]!='X')
+b+=B1[i];
+for(i=1;i>=0;i--)
+if(B2[i]!='X')
+b+=B2[i];
+
+i=0;
+while(a[0]!=b[i])
+i++;
+
+j=i;
+for(i=0;i<3;i++,j++)
+{
+	if(a[i]!=b[j])
+	{
+	flag=0;
+	break;
+	}
+	if(j==2)
+	{
+		j=-1;
+	}
+}
+	if(flag)
+	cout<<"YES";
+	else
+	cout<<"NO";
+return 0;
+}
